@@ -24,7 +24,7 @@
 
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm align-self-end "
-            style="background:rgba(255,192,0,0.7)!important;">
+            style="background:#FFD268!important;">
             <div class="container ">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
@@ -71,7 +71,7 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-                                <div class="my-sidebar  ">
+                                {{-- <div class="my-sidebar  ">
                                     <div>
                                         <div class="text-center  py-4 text-light  " style="min-height: 80px">
                                             <h4>{{ Auth::user()->name }}</h4>
@@ -86,8 +86,12 @@
                                             <a class="text-light fs-5 text-decoration-none"
                                                 href="{{ route('admin.types.index') }}">Type</a>
                                         </li>
+                                        <li>
+                                            <a class="text-light fs-5 text-decoration-none"
+                                                href="{{ route('admin.technologies.index') }}">Technology</a>
+                                        </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('admin') }}">{{ __('Dashboard') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

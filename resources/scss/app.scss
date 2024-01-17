@@ -18,15 +18,16 @@ h1 {
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
-    height:calc(100% - 70.23px);
+    // position: fixed;
+    // height:calc(100% - 70.23px);
+    height: 100%;
     overflow: auto;
     left: 0;
     bottom: 0;
 
 
     background: rgb(255,141,0);
-background: linear-gradient(180deg, rgba(255,141,0,1) 15%, rgba(255,192,0,1) 18%);
+background: linear-gradient(180deg, #FFD268 15%,  #FF982F 50%);
 }
 
 .fixed-container{
