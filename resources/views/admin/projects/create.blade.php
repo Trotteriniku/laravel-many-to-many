@@ -50,6 +50,26 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <div class="form-group">
+                    <h6>Select technologies</h6>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check @error('technologies') is-invalid @enderror">
+                            <input type="checkbox" class="form-check-input" name="technologies[]"
+                                value="{{ $technology->id }}"
+                                {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label">
+                                {{ $technology->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                    @error('technologies')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+
             <div class="d-flex gap-3 ">
                 <div class="mb-3">
                     <label for="preview">Preview</label>

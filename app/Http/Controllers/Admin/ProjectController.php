@@ -58,6 +58,9 @@ class ProjectController extends Controller
             $formData['preview'] = $img_path;
         }
         $project = Project::create($formData);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
         return redirect()->route('admin.projects.show', $project->slug);
 
     }
@@ -105,6 +108,12 @@ class ProjectController extends Controller
         $formData['user_id'] = $project->user_id;
 
         $project->update($formData);
+
+        // if ($request->has('technologies')) {
+        //     $project->technologies()->sync($request->technologies);
+        // } else {
+        //     $project->technologies()->detach();
+        // }
         return redirect()->route('admin.projects.show', $project->slug);
     }
 

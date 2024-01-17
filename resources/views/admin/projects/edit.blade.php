@@ -2,7 +2,7 @@
 @section('content')
     <section class="container">
         <h1>Edit {{ $project->title }}</h1>
-        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.update', $project->slug) }}" method="project" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -66,8 +66,33 @@
             </div>
 
 
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
+            <div class="mb-3">
+                <div class="form-group">
+                    <h6>Select technologies</h6>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check @error('technologies') is-invalid @enderror">
+                            @if ($errors->any())
+                                <input type="checkbox" class="form-check-input" name="technologies[]"
+                                    value="{{ $technology->id }}"
+                                    {{ in_array($technology->id, old('technologies', $project->technologies)) ? 'checked' : '' }}>
+                            @else
+                                <input type="checkbox" class="form-check-input" name="technologies[]"
+                                    value="{{ $technology->id }}"
+                                    {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                            @endif
+                            <label class="form-check-label">
+
+                                {{ $technology->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                    @error('technologies')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
 
         </form>
     </section>

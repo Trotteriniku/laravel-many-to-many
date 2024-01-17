@@ -1,22 +1,30 @@
 @extends('layouts.app')
 @section('content')
-    <section class="container">
-        <h1 class=" text-uppercase ">{{ $project->title }}</h1>
-        <h2><a href="{{ $project->link }}">Pagina uffuciale</a></h2>
-        <p>{{ $project->body }}</p>
-        <div class=" w-25 overflow-hidden rounded-5 ">
-            <img class="w-100" src="{{ asset('storage/' . $project->preview) }}" alt="{{ $project->title }}">
+    <section class="container my-3" id="item-project">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>{{ $project->title }}</h1>
+            <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-success px-3">Edit</a>
         </div>
+        <div>
+            <p>{{ $project->body }}</p>
+            @if ($project->type_id)
+                <div class="mb-3">
+                    <h4>Category</h4>
+                    <a class="badge text-bg-primary"
+                        href="{{ route('admin.types.show', $project->type->slug) }}">{{ $project->type->name }}</a>
+                </div>
+            @endif
+            <img class="w-25" src="{{ asset('storage/' . $project->preview) }}" alt="{{ $project->title }}">
+            @if (count($project->technologies) > 0)
+                <div class="mb-3">
+                    <h4>technologies</h4>
+                    @foreach ($project->technologies as $technology)
+                        <a class="badge rounded-pill text-bg-success"
+                            href="{{ route('admin.technologies.show', $technology->slug) }}">{{ $technology->name }}</a>
+                    @endforeach
 
+                </div>
+            @endif
+        </div>
     </section>
-    <a class="btn btn-success" href="{{ route('admin.projects.edit', $project->slug) }}">Modifica Progetto</a>
-    {{-- <a class="btn btn-success" href="{{ route('admin.projects.destroy', $project->id) }}">Cancella Progetto</a> --}}
-
-
-    <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST" class="d-inline">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger cancel-button delete-button">Delete</button>
-    </form>
-    @include('modal_delete')
 @endsection
