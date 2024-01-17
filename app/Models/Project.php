@@ -10,14 +10,14 @@ use App\Models\Technology;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'slug', 'link', 'body', 'preview', 'user_id'];
+    protected $fillable = ['title', 'slug', 'link', 'body', 'preview', 'user_id', 'type_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function types()
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }

@@ -89,10 +89,10 @@ class ProjectController extends Controller
         //CREATE SLUG
         if ($project->title !== $formData['title']) {
             $slug = Project::getSlug($formData['title']);
-
+            $formData['slug'] = $slug;
         }
         //add slug to formData
-        // $formData['slug'] = $slug;
+
         if ($request->hasFile('preview')) {
             if ($project->preview) {
                 Storage::delete($project->preview);
