@@ -32,7 +32,7 @@
                         <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                                 title="Edit project"><i class="fa-solid fa-pen"></i></a></td>
                         <td>
-                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="project">
+                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-button btn btn-danger ms-3"
