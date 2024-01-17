@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Technology;
 
 class Project extends Model
 {
@@ -33,6 +34,11 @@ class Project extends Model
         }
 
         return $slug;
+    }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
     }
 
 }

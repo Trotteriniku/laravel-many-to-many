@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Str;
@@ -31,7 +32,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -56,7 +58,7 @@ class ProjectController extends Controller
             $formData['preview'] = $img_path;
         }
         $project = Project::create($formData);
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
 
     }
 
@@ -74,7 +76,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -89,7 +92,7 @@ class ProjectController extends Controller
 
         }
         //add slug to formData
-        $formData['slug'] = $slug;
+        // $formData['slug'] = $slug;
         if ($request->hasFile('preview')) {
             if ($project->preview) {
                 Storage::delete($project->preview);
@@ -102,7 +105,7 @@ class ProjectController extends Controller
         $formData['user_id'] = $project->user_id;
 
         $project->update($formData);
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
