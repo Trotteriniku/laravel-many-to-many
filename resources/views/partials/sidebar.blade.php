@@ -1,7 +1,11 @@
 <div class="my-sidebar  ">
     <div>
         <div class="text-center  py-4 text-light  " style="min-height: 80px">
-            <h4>{{ Auth::user()->name }}</h4>
+            @auth
+                <h4>{{ Auth::user()->name }}</h4>
+            @else
+                <h4>Ospite</h4>
+            @endauth
         </div>
     </div>
     <ul class=" list-unstyled mt-5 pt-5 ms-4">

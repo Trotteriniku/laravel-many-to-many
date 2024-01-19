@@ -27,7 +27,9 @@ php artisan serve
 ctrl + c
 
 ```
+
 ## Configurazione Laravel
+
 ```bash
 npm remove postcss
 
@@ -104,6 +106,7 @@ export default defineConfig({
 #volendo personalizzo paginazione e pagine di errore
 php artisan vendor:publish --tag=laravel-errors
 php artisan vendor:publish --tag=laravel-pagination
+php artisan lang:publish
 
 #comandi git
 
@@ -111,12 +114,13 @@ git init
 git add .
 git commit -m "first commit"
 git branch -M main
-git remote add origin your_git_url 
+git remote add origin your_git_url
 git push -u origin main
 
 
 ```
-## Clono progetto da github 
+
+## Clono progetto da github
 
 ```bash
 # copio file .env.example e lo rinomino in .env
@@ -148,7 +152,7 @@ php artisan make:seeder UsersTableSeeder
 
 php artisan db:seed --class=UsersTableSeeder
 
-# preparo le rotte file web.php es. 
+# preparo le rotte file web.php es.
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 # oppure resource route per tutte le operazioni CRUD
 Route::resource('books', BookController::class);
@@ -160,18 +164,19 @@ php artisan make:controller NomeController --resource
 
 
 #creo model
-php artisan make:model Nome 
+php artisan make:model Nome
 #posso creare il model e contestualmente resource controller, migration, seeder e form request per validazioni
 php artisan make:model Nome -rcms --requests
 
 # creo le views relative
 
 #creo form request per validazione
-	
+
 php artisan make:request StoreMomemodelRequest
 
 
 ```
+
 ## Auth
 
 ```bash
